@@ -1,23 +1,26 @@
 'use client'
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryProvider } from './query-provider'
 import { ErrorBoundary } from 'react-error-boundary'
 import ErrorFallback from '../components/ErrorFallback'
-import { useState, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 export function Providers({ children }: { children: ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient())
+  
+   const handleReset = () => {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/todos'
+    }
+  }
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryProvider>
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
-        onReset={() => {
-          window.location.href = '/todos'
-        }}
+        onReset={handleReset}
       >
         {children}
       </ErrorBoundary>
-    </QueryClientProvider>
+    </QueryProvider>
   )
 }

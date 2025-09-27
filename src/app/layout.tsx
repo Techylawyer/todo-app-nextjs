@@ -28,6 +28,7 @@ export default function RootLayout({
             Todo App
           </h1>
           <Providers>{children}</Providers>
+          
         </main>
       </body>
     </html>

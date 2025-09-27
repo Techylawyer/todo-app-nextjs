@@ -1,4 +1,8 @@
-import Link from "next/link"export default function NotFound() {
+'use client'
+
+import Link from "next/link"
+
+export default function NotFound() {
   return (
     <aside className="flex flex-col gap-5 text-center h-screen justify-center items-center">
       <h1 className="text-3xl font-semibold tracking-tight text-destructive">

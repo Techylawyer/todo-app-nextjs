@@ -2,17 +2,17 @@
 
 import { Button } from '@/components/ui/button'
 import type { FallbackProps } from 'react-error-boundary'
-import { useRouter } from 'next/navigation'
+
 
 export default function ErrorFallback({
   error,
   resetErrorBoundary,
 }: FallbackProps) {
-  const router = useRouter()
-
   const handleReset = () => {
-    router.push('/todos') 
-    resetErrorBoundary() 
+    if (typeof window !== 'undefined') {
+      window.location.href = '/todos'
+    }
+    resetErrorBoundary()
   }
 
   return (

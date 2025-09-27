@@ -1,7 +1,12 @@
 'use client'
 
-import TodoPage from "components/TodoPage"
+import { Suspense } from 'react'
+import TodoPage from 'components/TodoPage'
 
 export default function Todos() {
-  return <TodoPage />
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <TodoPage />
+    </Suspense>
+  )
 }

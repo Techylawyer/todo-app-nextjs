@@ -1,7 +1,15 @@
 'use client'
 
 import TodoItemDetail from "components/TodoItemDetail"
+import React from "react"
 
-export default function TodoDetail({ params }: { params: { todoId: string } }) {
-  return <TodoItemDetail todoId={params.todoId} />
+export default function TodoItemPage({
+  params,
+}: {
+  params: Promise<{ todoId: string }>
+}) {
+  const unwrappedParams = React.use(params)
+  const todoId = unwrappedParams.todoId
+
+  return <TodoItemDetail todoId={todoId} />
 }

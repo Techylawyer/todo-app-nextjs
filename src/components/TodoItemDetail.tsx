@@ -1,8 +1,11 @@
-import { useRouter} from 'next/navigation'
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Button } from '@/components/ui/button'
-import NotFoundPage from './NotFound'
+// import NotFoundPage from './NotFound'
+import { notFound } from 'next/navigation'
 
 import type { Todo } from './types'
 
@@ -10,7 +13,7 @@ interface TodoItemDetailProps {
   todoId: string
 }
 
-export default function TodoItemDetail({todoId} : TodoItemDetailProps) {
+export default function TodoItemDetail({ todoId }: TodoItemDetailProps) {
   const router = useRouter()
   const queryClient = useQueryClient()
 
@@ -31,7 +34,8 @@ export default function TodoItemDetail({todoId} : TodoItemDetailProps) {
   const todo = findTodo()
 
   if (!todo) {
-    return <NotFoundPage/>
+    // return <NotFoundPage />
+    notFound()
   }
 
   return (

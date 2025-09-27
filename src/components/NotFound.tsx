@@ -1,8 +1,7 @@
-import Link  from 'next/link'
-import { Button } from '@/components/ui/button'
-import { FaArrowLeft } from 'react-icons/fa'
+import GoBackButton from 'components/GoBackButton'
 
 export default function NotFoundPage() {
+
   return (
     <aside className="flex flex-col gap-5 text-center">
       <h1 className="pt-5 text-3xl font-semibold tracking-tight first:mt-0 text-destructive">
@@ -11,10 +10,7 @@ export default function NotFoundPage() {
       <p className="text-destructive mb-10">
         Sorry, the page you are looking for does not exist.
       </p>
-      <Button variant="default" size="default" className="w-50 mx-auto cursor-pointer">
-        <FaArrowLeft />
-        <Link href="/">Go back to Home</Link>
-      </Button>
+      <GoBackButton/> 
     </aside>
   )
 }

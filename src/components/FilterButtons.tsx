@@ -1,9 +1,11 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function FilterButtons() {
- const router = useRouter()
- const searchParams = useSearchParams()
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
   const current = searchParams.get('filter') || 'all'
 

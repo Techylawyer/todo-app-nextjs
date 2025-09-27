@@ -1,16 +1,4 @@
-// 'use client'
-
-// // export const dynamic = 'force-dynamic'
-// import NotFoundPage from 'components/NotFound'
-
-// export default function NotFound() {
-//   return <NotFoundPage />
-// }
-
-
-import Link from "next/link"
-
-export default function NotFound() {
+import Link from "next/link"export default function NotFound() {
   return (
     <aside className="flex flex-col gap-5 text-center h-screen justify-center items-center">
       <h1 className="text-3xl font-semibold tracking-tight text-destructive">

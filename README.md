@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo App
 
-## Getting Started
+This todo app built with NextJS provides a simple and intuitive way of tracking your tasks.
 
-First, run the development server:
+## Features 
+
+* Create new tasks
+* Update existing tasks
+* Delete tasks
+* Mark tasks as completed
+* Filter tasks by all, active and completed
+* Search tasks
+
+![Todo App](/src/images/image-1.png)
+
+* Paginated tasks (10 tasks per page)
+
+* View individual tasks to get more details ![Todo details](src/images/image-2.png)
+
+## Technology Stack
+
+The following tools were used in this project:
+
+* NextJS
+* React
+* ShadCN/UI
+* DummyJSON API
+* Tailwind CSS
+* Tanstack (React) Query
+* React Paginate
+* Axios
+* Localforage
+* React Icons
+* React Error Boundary
+
+## Installation and Setup
+
+To get started with this project, ensure you have Node.js installed (v20 or higher).
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/Techylawyer/todo-app-react.git
+
+cd todo-app-react
+```
+2. Install the necessary packages and dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Integration
+ 
+ * The DummyJSON Todo API (https://dummyjson.com/todos) for generating a default list of todos
+ * Tanstack (React) Query  for data fetching
+ * Localforage for data caching and persistence
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ ## Styling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* ShadCN/UI for component styling and color consistency
+* Tailwind CSS for CSS utility classes
 
-## Learn More
+ ## Available Scripts
+ * ```npm run dev``` - start the development server
+ * ``` npm run build``` - build for production
+ * ```npm run preview``` preview production build
 
-To learn more about Next.js, take a look at the following resources:
+ ## Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ * Light and dark theme toggle
+ * Search all todos functionality
+ * Implement offline capability

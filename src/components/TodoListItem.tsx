@@ -1,0 +1,137 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { FaTrash, FaEdit, FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+import type { Todo } from './types'
+
+type TodoListItemProps = {
+  todo: Todo
+  onUpdate: (todo: Todo) => void
+  onDelete: (id: number) => void
+}
+
+export default function TodoListItem({
+  todo,
+  onUpdate,
+  onDelete,
+}: TodoListItemProps) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [editValue, setEditValue] = useState(todo.todo)
+
+  useEffect(() => {
+    setEditValue(todo.todo)
+  }, [todo.todo])
+
+  const handleSave = () => {
+    onUpdate({ id: todo.id, todo: editValue, completed: todo.completed })
+    setIsEditing(false)
+  }
+
+  const handleCancelClick = () => {
+    setEditValue(todo.todo)
+    setIsEditing(false)
+  }
+
+  const handleCancelKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      setEditValue(todo.todo)
+      setIsEditing(false)
+    }
+  }
+
+  const handleToggle = () => {
+    onUpdate({ id: todo.id, todo: todo.todo, completed: !todo.completed })
+  }
+
+  if (isEditing) {
+    return (
+      <li>
+        <form
+          className="flex justify-between items-center gap-8"
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSave()
+          }}
+        >
+          <Input
+            className="w-full"
+            autoFocus
+            type="text"
+            name="edit-todo"
+            value={editValue}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEditValue(e.target.value)
+            }
+            onKeyDown={handleCancelKey}
+          />
+          <div className="btn-group flex justify-between gap-5">
+            <Button
+              variant="default"
+              size="icon"
+              className="size-6 cursor-pointer"
+              type="submit"
+              aria-label="Save Todo"
+            >
+              <FaCheckCircle />
+            </Button>
+            <Button
+              variant="default"
+              size="icon"
+              className="size-6 cursor-pointer"
+              aria-label="Cancel Editing"
+              type="button"
+              onClick={handleCancelClick}
+            >
+              <FaTimesCircle />
+            </Button>
+          </div>
+        </form>
+      </li>
+    )
+  }
+
+  return (
+    <li
+      style={todo.completed ? { textDecoration: 'line-through' } : {}}
+      className="flex gap-5 items-center justify-between"
+    >
+      <div className="flex items-center">
+        <input
+          className="h-5 w-5 accent-primary"
+          type="checkbox"
+          name="check-completed"
+          checked={todo.completed}
+          onChange={handleToggle}
+        />
+        <Link href={`./todos/${todo.id}`}>
+          <p className="hover:bg-blue p-2 w-full">{todo.todo}</p>
+        </Link>
+      </div>
+
+      <section className="btn-wrap flex gap-5">
+        <Button
+          variant="default"
+          size="icon"
+          className="size-6 cursor-pointer"
+          aria-label="Edit Todo"
+          onClick={() => setIsEditing(true)}
+        >
+          <FaEdit />
+        </Button>
+        <Button
+          variant="default"
+          size="icon"
+          className="size-6 cursor-pointer"
+          aria-label="Delete Todo"
+          onClick={() => onDelete(todo.id)}
+        >
+          <FaTrash />
+        </Button>
+      </section>
+    </li>
+  )
+}
